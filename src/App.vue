@@ -22,7 +22,9 @@
     </v-app-bar>
 
     <v-main>
-      <PriceDisplay/>
+      <v-container fill-height fluid>
+        <PriceDisplay/>
+    </v-container>
     </v-main>
   </v-app>
 </template>
@@ -38,7 +40,6 @@ export default {
   },
 
   data: () => ({
-    //
   }),
 };
 </script>
