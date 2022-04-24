@@ -2,13 +2,13 @@
   <v-container>
     <v-row align="center"
       justify="center">
-      <v-col cols="2">
+      <v-col cols="4">
         <v-text-field
           label="Amount"
           v-model="leftSide"
           prefix="btc"
           outlined
-          @input="handler"
+          @change="handler"
         ></v-text-field>
       </v-col>
       <v-col cols="2">
@@ -61,10 +61,24 @@
         this.rightSide = res[0].current_price * this.leftSide
       })
     },
+    computed: {
+      amount () {
+        let stringNum = this.leftSide.toString();
+        let output = '0.'
+        for (let i = 0; i < 8 - stringNum.length; i++) {
+          output += "0"
+        }
+        return output + stringNum
+      }
+    },
     methods: {
       handler(e) {
-        console.log("bingo")
         console.log(e)
+        console.log(this.amount)
+        
+        if (!this.leftSide.includes(".")){
+          this.leftSide = this.amount
+        } 
         this.rightSide = this.current_price * this.leftSide
       }
     }
