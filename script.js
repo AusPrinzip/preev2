@@ -10,7 +10,7 @@ var currentPrice = 0;
 $('#btn-input').on("input", function() {
    const newVal1 = $(this).val();
    $('.css-1p8s75i').css("width", `${50 + newVal1.toString().length * 35}px`)
-   const newVal2 = parseFloat(newVal * currentPrice).toFixed(3)
+   const newVal2 = parseFloat(newVal1 * currentPrice).toFixed(3)
    $('#btn-input2').val(newVal2)
    $('.css-v8fmq5').css("width", `${50 + newVal2.toString().length * 35}px`)
 });
