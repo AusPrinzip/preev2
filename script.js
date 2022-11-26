@@ -40,19 +40,19 @@ $('#btn-input').on("input", function() {
     $('#btc-img').show()
    }
 
-   $('.css-1p8s75i').css("width", `${50 + newVal1.toString().length * 35}px`)
+   $('.css-1p8s75i').css("width", `${12 + newVal1.toString().length * 2}vw`)
    const newVal2 = (newVal1 * currentPrice).toLocaleString('en-US')
    $('#btn-input2').val(newVal2)
-   $('.css-v8fmq5').css("width", `${50 + newVal2.toString().length * 35}px`)
+   $('.css-v8fmq5').css("width", `${12 + newVal2.toString().length * 2}vw`)
 });
 
 // Automatically change inputfield #2 width based on value length
 $('#btn-input2').on("input", function() {
    const newVal1 = $(this).val()
-   $('.css-v8fmq5').css("width", `${50 + newVal1.toString().length * 35}px`)
+   $('.css-v8fmq5').css("width", `${12 + newVal1.toString().length * 2}vw`)
    const newVal2 = (currentPrice / newVal1).toLocaleString('en-US')
    $('#btn-input').val(newVal2)
-   $('.css-1p8s75i').css("width", `${50 + newVal2.toString().length * 35}px`)
+   $('.css-1p8s75i').css("width", `${12 + newVal2.toString().length * 2}vw`)
 });
 
 // BTC price initial update and inputfield#2 width update
@@ -63,7 +63,7 @@ $( document ).ready(
     console.log(newVal)
     $('#btn-input2').val(newVal)
     const newValLength = currentPrice.toString().length;
-    $('.css-v8fmq5').css("width", `${50 + newValLength * 35}px`)
+    $('.css-v8fmq5').css("width", `${12 + newValLength * 2}vw`)
   })
 )
 
