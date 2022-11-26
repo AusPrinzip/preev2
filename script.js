@@ -1,4 +1,8 @@
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 // Trick to get cursor to focus on the right most side of the input field
 $('#btn-input').focus();
 $('#btn-input').val(0);
@@ -37,7 +41,7 @@ $('#btn-input').on("input", function() {
    }
 
    $('.css-1p8s75i').css("width", `${50 + newVal1.toString().length * 35}px`)
-   const newVal2 = parseFloat(newVal1 * currentPrice).toFixed(3)
+   const newVal2 = (newVal1 * currentPrice).toLocaleString('en-US')
    $('#btn-input2').val(newVal2)
    $('.css-v8fmq5').css("width", `${50 + newVal2.toString().length * 35}px`)
 });
@@ -46,7 +50,7 @@ $('#btn-input').on("input", function() {
 $('#btn-input2').on("input", function() {
    const newVal1 = $(this).val()
    $('.css-v8fmq5').css("width", `${50 + newVal1.toString().length * 35}px`)
-   const newVal2 = parseFloat(currentPrice / newVal1).toFixed(3)
+   const newVal2 = (currentPrice / newVal1).toLocaleString('en-US')
    $('#btn-input').val(newVal2)
    $('.css-1p8s75i').css("width", `${50 + newVal2.toString().length * 35}px`)
 });
@@ -55,7 +59,9 @@ $('#btn-input2').on("input", function() {
 $( document ).ready(
   $.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false').done((res) => {
     currentPrice = res[0].current_price
-    $('#btn-input2').val(Math.round(currentPrice))
+    const newVal = currentPrice.toLocaleString('en-US')
+    console.log(newVal)
+    $('#btn-input2').val(newVal)
     const newValLength = currentPrice.toString().length;
     $('.css-v8fmq5').css("width", `${50 + newValLength * 35}px`)
   })
