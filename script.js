@@ -25,8 +25,17 @@ var currentPrice = 0;
 // Automatically change inputfield #1 width based on value length AND Value update whenever inputfield#1 changes
 $('#btn-input').on("input", function() {
    var newVal1 = $(this).val();
+   const isDecimal = newVal1 % 1 != 0;
+   console.log(`isDecimal ${isDecimal}`)
+   console.log(newVal1 % 1)
 
-   if (newVal1.length > 1) {
+   if (newVal1.toString().indexOf(".") == newVal1.toString().length - 1) return
+
+   if (isDecimal) {
+      console.log('btc mode')
+      $('#satoshi-img').hide()
+      $('#btc-img').show()
+   } else if (newVal1.length > 1) {
     console.log('satoshi mode')
     newVal1 = parseFloat(newVal1 / 100000000).toFixed(8)
     setTimeout(() => {
